@@ -1,3 +1,5 @@
+<!-- https://eloistree.github.io/SignMetaMaskTextHere/index.html?q=guid_to_sign
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,10 +43,16 @@
         else {
             document.getElementById('messageInput').value = urlParams.get('q');
         }
+        var hasParameter = document.getElementById('messageInput').value.length > 0;
+
+        if (hasParameter) {
+            await call_signature_metamask();
+        }
+
+        document.getElementById('connectButton').addEventListener('click', call_signature_metamask() );
 
 
-
-        document.getElementById('connectButton').addEventListener('click', async function() {
+        async function call_signature_metamask() {
             'use strict';
 
             if (typeof window.ethereum !== 'undefined') {
@@ -107,9 +115,7 @@
             }
            
 
-             });
-
-
+             }
 
     
     </script>
