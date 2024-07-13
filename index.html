@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetaMask Connect and Sign Message</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+     <link rel="shortcut icon" href="https://cdn.iconscout.com/icon/free/png-256/free-metamask-7662310-6297246.png?f=webp&w=128" />
+</head>
+<body>
+    <h1>Connect to MetaMask and Sign a Message</h1>
+
+    <input type="text" id="messageInput" placeholder="Enter message to sign">
+
+    <button id="connectButton">Connect and sign message MetaMask</button>
+
+
+    <p id="messageDisplay">Message:</p>
+    <p id="addressDisplay">Address:</p>
+    <p id="signatureDisplay">Signed Message:</p>
+    <p id="signatureDate">Date: </p>
+    <p id="version">7</p>
+    <input type="text" id="copyPastable" value="-">
+
+    <div id="accountInfo">
+        <h3>Account Information</h3>
+        <p id="account">Account: </p>
+        <p id="balance">Balance: </p>
+        <p id="chainId">Chain ID: </p>
+        <p id="networkId">Network ID: </p>
+    </div>
+
+ 
+    <script>
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const messageUrl = urlParams.get('message');
+        if (messageUrl) {
+            document.getElementById('messageInput').value = messageUrl;
+        }
+        else {
+            document.getElementById('messageInput').value = urlParams.get('q');
+        }
+
+
+
+        document.getElementById('connectButton').addEventListener('click', async function() {
+            'use strict';
+
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    // Request account access if needed
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+                    // Initialize web3
+                    const web3 = new Web3(window.ethereum);
+
+                    // Check if MetaMask is connected
+                    const accounts = await web3.eth.getAccounts();
+                    if (accounts.length === 0) {
+                        console.log('MetaMask is not connected');
+                        alert('MetaMask is not connected');
+                        return;
+                    } else {
+                        console.log('MetaMask is connected. Account:', accounts[0]);
+                    }
+
+                    const message = document.getElementById('messageInput').value;
+                    console.log('Message to sign:', message);
+                    if (message) {
+                        web3.eth.personal.sign(web3.utils.utf8ToHex(message), accounts[0], '')
+                            .then(signature => {
+                                console.log('Message signed:', signature);
+                                document.getElementById('messageDisplay').innerText = 'Message: ' + message;
+                                document.getElementById('addressDisplay').innerText = 'Address: ' + accounts[0];
+                                document.getElementById('signatureDisplay').innerText = 'Signed Message: ' + signature;
+                                document.getElementById('signatureDate').innerText = 'Date: ' + new Date().toLocaleString();
+                                var string_copy_past = message + "|" + accounts[0] + "|" + signature;
+                                document.getElementById('copyPastable').value = string_copy_past;
+                                navigator.clipboard.writeText(string_copy_past);
+       
+                                const textToCopy = string_copy_past;
+                                const tempTextArea = document.createElement('textarea');
+                                tempTextArea.value = textToCopy;
+                                document.body.appendChild(tempTextArea);
+                                tempTextArea.select();
+                                document.execCommand('copy');
+                                document.body.removeChild(tempTextArea);
+                                alert('Text copied to clipboard: "'+string_copy_past+'"');
+                           
+                                document.getElementById('account').innerText = `Account: ${account}`;
+
+                              })
+                            .catch(error => {
+                                console.error('Error signing message:', error);
+                            });
+                    } else {
+                        console.log('No message entered');
+                    }
+                } catch (error) {
+                    console.error('Error during MetaMask interaction:', error);
+                    alert('Error during MetaMask interaction: ' + error.message);
+                }
+            } else {
+                console.log('MetaMask is not installed');
+                alert('MetaMask is not installed. Please install it to proceed.');
+            }
+           
+
+             });
+
+
+
+    
+    </script>
+
+  <p> What ? This page, is just here to allows you to sign a given message in aim to prove to someone that you are the owner of private key without exposing it.</p>
+  <p> Connect to your Meta Mask validate the request of signing the message and give back the result to the app requesting it. </p>
+</body>
+</html>
