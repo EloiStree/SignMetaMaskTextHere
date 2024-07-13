@@ -152,9 +152,9 @@
                                     navigator.clipboard.writeText(string_copy_past);
         
                                     const textToCopy = string_copy_past;
-                                    navigator.clipboard.writeText(textToCopy)
                                     const tempTextArea = document.createElement('textarea');
                                     tempTextArea.value = textToCopy;
+                                    navigator.clipboard.writeText(string_copy_past)
                                     document.body.appendChild(tempTextArea);
                                     tempTextArea.select();
                                     document.execCommand('copy');
