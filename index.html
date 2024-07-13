@@ -23,16 +23,10 @@
     <p id="signatureDate">Date: </p>
     <p id="version">9</p>
     <input type="text" id="copyPastable" value="-">
+    <p><b>Copy pastable claim: GUID|META_MASK_ADDRESS|SIGNED_MESSSAGE</b></p>
 
-    <div id="accountInfo">
-        <h3>Account Information</h3>
-        <p id="account">Account: </p>
-        <p id="balance">Balance: </p>
-        <p id="chainId">Chain ID: </p>
-        <p id="networkId">Network ID: </p>
-    </div>
 
- 
+
     <script>
 
         const urlParams = new URLSearchParams(window.location.search);
@@ -95,9 +89,9 @@
                                     tempTextArea.select();
                                     document.execCommand('copy');
                                     document.body.removeChild(tempTextArea);
-                                    alert('Text copied to clipboard: "'+string_copy_past+'"');
+                                    //alert('Text copied to clipboard: "'+string_copy_past+'"');
                             
-                                    document.getElementById('account').innerText = `Account: ${account}`;
+                                   // document.getElementById('account').innerText = `Account: ${accounts[0].balence}`;
 
                                 })
                                 .catch(error => {
