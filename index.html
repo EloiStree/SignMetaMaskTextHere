@@ -21,7 +21,7 @@
     <p id="addressDisplay">Address:</p>
     <p id="signatureDisplay">Signed Message:</p>
     <p id="signatureDate">Date: </p>
-    <p id="version">8</p>
+    <p id="version">9</p>
     <input type="text" id="copyPastable" value="-">
 
     <div id="accountInfo">
@@ -44,9 +44,10 @@
             document.getElementById('messageInput').value = urlParams.get('q');
         }
         var hasParameter = document.getElementById('messageInput').value.length > 0;
-
+        console.log('hasParameter:', hasParameter);
         if (hasParameter) {
-            await call_signature_metamask();
+
+             call_signature_metamask();
         }
 
         document.getElementById('connectButton').addEventListener('click', call_signature_metamask() );
@@ -55,65 +56,65 @@
         async function call_signature_metamask() {
             'use strict';
 
-            if (typeof window.ethereum !== 'undefined') {
-                try {
-                    // Request account access if needed
-                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+                if (typeof window.ethereum !== 'undefined') {
+                    try {
+                        // Request account access if needed
+                        await window.ethereum.request({ method: 'eth_requestAccounts' });
 
-                    // Initialize web3
-                    const web3 = new Web3(window.ethereum);
+                        // Initialize web3
+                        const web3 = new Web3(window.ethereum);
 
-                    // Check if MetaMask is connected
-                    const accounts = await web3.eth.getAccounts();
-                    if (accounts.length === 0) {
-                        console.log('MetaMask is not connected');
-                        alert('MetaMask is not connected');
-                        return;
-                    } else {
-                        console.log('MetaMask is connected. Account:', accounts[0]);
+                        // Check if MetaMask is connected
+                        const accounts = await web3.eth.getAccounts();
+                        if (accounts.length === 0) {
+                            console.log('MetaMask is not connected');
+                            alert('MetaMask is not connected');
+                            return;
+                        } else {
+                            console.log('MetaMask is connected. Account:', accounts[0]);
+                        }
+
+                        const message = document.getElementById('messageInput').value;
+                        console.log('Message to sign:', message);
+                        if (message) {
+                            web3.eth.personal.sign(web3.utils.utf8ToHex(message), accounts[0], '')
+                                .then(signature => {
+                                    console.log('Message signed:', signature);
+                                    document.getElementById('messageDisplay').innerText = 'Message: ' + message;
+                                    document.getElementById('addressDisplay').innerText = 'Address: ' + accounts[0];
+                                    document.getElementById('signatureDisplay').innerText = 'Signed Message: ' + signature;
+                                    document.getElementById('signatureDate').innerText = 'Date: ' + new Date().toLocaleString();
+                                    var string_copy_past = message + "|" + accounts[0] + "|" + signature;
+                                    document.getElementById('copyPastable').value = string_copy_past;
+                                    navigator.clipboard.writeText(string_copy_past);
+        
+                                    const textToCopy = string_copy_past;
+                                    const tempTextArea = document.createElement('textarea');
+                                    tempTextArea.value = textToCopy;
+                                    document.body.appendChild(tempTextArea);
+                                    tempTextArea.select();
+                                    document.execCommand('copy');
+                                    document.body.removeChild(tempTextArea);
+                                    alert('Text copied to clipboard: "'+string_copy_past+'"');
+                            
+                                    document.getElementById('account').innerText = `Account: ${account}`;
+
+                                })
+                                .catch(error => {
+                                    console.error('Error signing message:', error);
+                                });
+                        } else {
+                            console.log('No message entered');
+                        }
+                    } catch (error) {
+                        console.error('Error during MetaMask interaction:', error);
+                        alert('Error during MetaMask interaction: ' + error.message);
                     }
-
-                    const message = document.getElementById('messageInput').value;
-                    console.log('Message to sign:', message);
-                    if (message) {
-                        web3.eth.personal.sign(web3.utils.utf8ToHex(message), accounts[0], '')
-                            .then(signature => {
-                                console.log('Message signed:', signature);
-                                document.getElementById('messageDisplay').innerText = 'Message: ' + message;
-                                document.getElementById('addressDisplay').innerText = 'Address: ' + accounts[0];
-                                document.getElementById('signatureDisplay').innerText = 'Signed Message: ' + signature;
-                                document.getElementById('signatureDate').innerText = 'Date: ' + new Date().toLocaleString();
-                                var string_copy_past = message + "|" + accounts[0] + "|" + signature;
-                                document.getElementById('copyPastable').value = string_copy_past;
-                                navigator.clipboard.writeText(string_copy_past);
-       
-                                const textToCopy = string_copy_past;
-                                const tempTextArea = document.createElement('textarea');
-                                tempTextArea.value = textToCopy;
-                                document.body.appendChild(tempTextArea);
-                                tempTextArea.select();
-                                document.execCommand('copy');
-                                document.body.removeChild(tempTextArea);
-                                alert('Text copied to clipboard: "'+string_copy_past+'"');
-                           
-                                document.getElementById('account').innerText = `Account: ${account}`;
-
-                              })
-                            .catch(error => {
-                                console.error('Error signing message:', error);
-                            });
-                    } else {
-                        console.log('No message entered');
-                    }
-                } catch (error) {
-                    console.error('Error during MetaMask interaction:', error);
-                    alert('Error during MetaMask interaction: ' + error.message);
+                } else {
+                    console.log('MetaMask is not installed');
+                    alert('MetaMask is not installed. Please install it to proceed.');
                 }
-            } else {
-                console.log('MetaMask is not installed');
-                alert('MetaMask is not installed. Please install it to proceed.');
-            }
-           
+            
 
              }
 
