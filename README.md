@@ -1,2 +1,3 @@
-# SignMetaMaskTextHere
-This repository just give you the ability to sign a text message from Meta Mask.
+# Sign Meta Mask Text Here
+You need to sign a message with Meta Mask and don't know how to do it with code.
+Just go at https://eloistree.github.io/SignMetaMaskTextHere/README.md
