@@ -8,26 +8,41 @@
     <title>MetaMask Connect and Sign Message</title>
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
      <link rel="shortcut icon" href="https://cdn.iconscout.com/icon/free/png-256/free-metamask-7662310-6297246.png?f=webp&w=128" />
+
+    <style>
+        body {
+            background-color: rgb(174, 236, 174);
+        }
+
+    </style>
+
 </head>
 <body>
+<div style="text-align: center;">
+    <h1>Documentation</h1>
+    <p>Read me: https://github.com/EloiStree/SignMetaMaskTextHere</p>
+    <p><I>Use me: https://eloistree.github.io/SignMetaMaskTextHere/index.html?q=guid_to_sign</I></p>
+    <p>How to use in video: Add video </p>
+
     <h1>Connect to MetaMask and Sign a Message</h1>
 
-    <textarea id="messageInput" name="Copy Pastable" rows="5" cols="400" placeholder="Enter message to sign"></textarea>></textarea>
+<div><textarea id="messageInput" name="Copy Pastable" rows="5" cols="400" placeholder="Enter message to sign"></textarea>></textarea></div>
 
-    <button id="connectButton">Connect and sign message MetaMask</button>
+    <div><button id="connectButton">Connect and sign message MetaMask</button></div>
 
 
+<div>
     <p id="messageDisplay">Message:</p>
     <p id="addressDisplay">Address:</p>
     <p id="signatureDisplay">Signed Message:</p>
     <p id="signatureDate">Date: </p>
-    <p id="version">9</p>
+    <p id="version">10</p>
+</div>
 
+<div>
     <textarea id="copyPastable" name="Copy Pastable" rows="5" cols="400"></textarea>
-
-    <input type="text" id="copyPastable" value="-">
     <p><b>Copy pastable claim: GUID|META_MASK_ADDRESS|SIGNED_MESSSAGE</b></p>
-
+</div>
 
 
     <script>
@@ -92,6 +107,7 @@
                                     tempTextArea.select();
                                     document.execCommand('copy');
                                     document.body.removeChild(tempTextArea);
+                                    console.log('Text copied to clipboard:', string_copy_past);
                                     //alert('Text copied to clipboard: "'+string_copy_past+'"');
                             
                                    // document.getElementById('account').innerText = `Account: ${accounts[0].balence}`;
@@ -118,7 +134,6 @@
     
     </script>
 
-  <p> What ? This page, is just here to allows you to sign a given message in aim to prove to someone that you are the owner of private key without exposing it.</p>
-  <p> Connect to your Meta Mask validate the request of signing the message and give back the result to the app requesting it. </p>
+    </div>
 </body>
 </html>
