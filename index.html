@@ -153,8 +153,7 @@
                                     var copyText = document.getElementById("copyPastable");
                                     copyText.select();
                                     copyText.setSelectionRange(0, 99999); // For mobile devices
-                                    navigator.clipboard.writeText(copyText.value);
-
+                                    copyToClipboard(string_copy_past);
                                 })
                                 .catch(error => {
                                     console.error('Error signing message:', error);
@@ -174,7 +173,15 @@
 
              }
 
-    
+             function copyToClipboard(text) {
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    console.log('Text copied to clipboard');
+                })
+                .catch((error) => {
+                    console.error('Failed to copy text to clipboard:', error);
+                });
+            }
     </script>
 
     </div>
