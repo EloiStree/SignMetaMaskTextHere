@@ -78,9 +78,10 @@
 
     <h1>Connect to MetaMask and Sign a Message</h1>
 
-<div><textarea id="messageInput" name="Copy Pastable" rows="5" cols="400" placeholder="Enter message to sign"></textarea>></textarea></div>
+<div><textarea id="messageInput" name="Copy Pastable" rows="5" cols="400" placeholder="Enter message to sign" ></textarea></div>
 
-    <div><button id="connectButton">Connect and sign message MetaMask</button></div>
+    <div>
+        <button id="connectButton">Connect and sign message MetaMask</button></div>
 
 
 <div>
@@ -114,7 +115,9 @@
              call_signature_metamask();
         }
 
-        document.getElementById('connectButton').addEventListener('click', await call_signature_metamask() );
+        document.getElementById('connectButton').addEventListener('click', async () => {
+            await call_signature_metamask();
+        });
 
 
         async function call_signature_metamask() {
