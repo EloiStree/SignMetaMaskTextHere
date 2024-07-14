@@ -87,7 +87,7 @@
     <p id="addressDisplay">Address:</p>
     <p id="signatureDisplay">Signed Message:</p>
     <p id="signatureDate">Date: </p>
-    <p id="version">10</p>
+    <p id="version">Code version: 0.0.11</p>
 </div>
 
 <div>
@@ -149,15 +149,12 @@
                                     document.getElementById('signatureDate').innerText = 'Date: ' + new Date().toLocaleString();
                                     var string_copy_past = message + "|" + accounts[0] + "|" + signature;
                                     document.getElementById('copyPastable').value = string_copy_past;
-                                    navigator.clipboard.writeText(string_copy_past);
-        
                                     const textToCopy = string_copy_past;
                                     const tempTextArea = document.createElement('textarea');
                                     tempTextArea.value = textToCopy;
                                     navigator.clipboard.writeText(string_copy_past).then(() => {
-                                
                                     }).catch(err => {
-                                        alert('Clipboard disable, please copy the text below.');
+                                       // alert('Clipboard disable, please copy the text below.');
                                     });
                                     document.body.appendChild(tempTextArea);
                                     tempTextArea.select();
