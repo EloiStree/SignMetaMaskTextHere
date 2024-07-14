@@ -154,7 +154,11 @@
                                     const textToCopy = string_copy_past;
                                     const tempTextArea = document.createElement('textarea');
                                     tempTextArea.value = textToCopy;
-                                    navigator.clipboard.writeText(string_copy_past)
+                                    navigator.clipboard.writeText(string_copy_past).then(() => {
+                                
+                                    }).catch(err => {
+                                        alert('Clipboard disable, please copy the text below.');
+                                    });
                                     document.body.appendChild(tempTextArea);
                                     tempTextArea.select();
                                     document.execCommand('copy');
