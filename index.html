@@ -149,14 +149,11 @@
                                     document.getElementById('signatureDate').innerText = 'Date: ' + new Date().toLocaleString();
                                     var string_copy_past = message + "|" + accounts[0] + "|" + signature;
                                     document.getElementById('copyPastable').value = string_copy_past;
-                                    const textToCopy = string_copy_past;
-                                    navigator.clipboard.writeText(textToCopy)
-                                        .then(() => {
-                                            console.log('Text copied to clipboard:', textToCopy);
-                                        })
-                                        .catch(error => {
-                                            console.error('Error copying to clipboard:', error);
-                                        });
+                                    
+                                    var copyText = document.getElementById("copyPastable");
+                                    copyText.select();
+                                    copyText.setSelectionRange(0, 99999); // For mobile devices
+                                    navigator.clipboard.writeText(copyText.value);
 
                                 })
                                 .catch(error => {
