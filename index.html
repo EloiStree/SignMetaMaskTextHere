@@ -79,9 +79,9 @@
     <h1>Connect to MetaMask and Sign a Message</h1>
 
 <div><textarea id="messageInput" name="Copy Pastable" rows="5" cols="400" placeholder="Enter message to sign"></textarea></div>
-A
-    <div>B
-        <button id="connectButton">DConnect and sign message MetaMask</button></div>
+
+    <div>
+        <button id="connectButton"> Connect and sign message MetaMask </button></div>
 
 
 <div>
@@ -93,13 +93,19 @@ A
 </div>
 
 <div>
-    <input id="copyPastable" name="Copy Pastable"></input>
+    <P><input id="copyPastable" name="Copy Pastable"></input>
+    <button id="copyButton">Copy pastable</button></P>
     <p><b>Copy pastable claim: GUID|META_MASK_ADDRESS|SIGNED_MESSSAGE</b></p>
 </div>
 
 
     <script>
 
+        // Example usage:
+        document.getElementById('copyButton').addEventListener('click', function() {
+            var copyText = document.getElementById("copyPastable");
+            copyToClipboard(copyText.value);
+        });
         const urlParams = new URLSearchParams(window.location.search);
         const messageUrl = urlParams.get('message');
         if (messageUrl) {
@@ -177,15 +183,20 @@ A
 
              }
 
-             function copyToClipboard(text) {
-            navigator.clipboard.writeText(text)
-                .then(() => {
-                    console.log('Text copied to clipboard');
-                })
-                .catch((error) => {
-                    console.error('Failed to copy text to clipboard:', error);
+            function copyToClipboard(text) {
+                if (!navigator.clipboard) {
+                    console.error('Clipboard API not available');
+                    return;
+                }
+                
+                navigator.clipboard.writeText(text).then(function() {
+                    console.log('Text successfully copied to clipboard');
+                }).catch(function(error) {
+                    console.error('Could not copy text to clipboard: ', error);
                 });
             }
+
+        
     </script>
 
     </div>
