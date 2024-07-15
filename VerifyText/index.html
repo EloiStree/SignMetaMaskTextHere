@@ -70,29 +70,34 @@ https://eloistree.github.io/SignMetaMaskTextHereVerifyText/index.html?q=messsage
 
 
     </style>
-
+<style>
+    .HorizontalFull {
+        width: 100%;
+    }
+</style>
 </head>
 <body>
-<div style="text-align: center;">
+<div style="text-align: center; width: 80%;">
     <h1>Documentation</h1>
     <p>Read me: <A href="https://github.com/EloiStree/SignMetaMaskTextHere">https://github.com/EloiStree/SignMetaMaskTextHere</A></p>
     
 
 
     <div>
+        
         <h2>Signed Message</h2>
-        <textarea id="pastTextToVerified" placeholder="Enter message signed to verify in format Message|Address|SignedMessage"></textarea><br/>
-        <button id="splitRawMessage">Split</button><br/>
-        <input type="text" id="messageToSign" placeholder="What message was signed ?"><br/>
-        <input type="text" id="messageSignerAddress" placeholder="What the ethereum address of the signer ?"><br/>
-        <input type="text" id="signedMessageAsText" placeholder="Text that suppose to prove he hold a his private key?"><br/>
-        <input type="text" id="signerAddress" placeholder="Ethereum Address of the signer"><br/>
-        <button id="splitRawMessage">Is Valide ?</button><br/>
-        <input type="text" id="extractedAddress" readonly placeholder="Will be the address found in the message signed"><br/>
-        <input type="checkbox" id="signerValidity" readonly/><br/>
-        <label for="signerValidity">Signer is valid ?</label>
+        <label class="HorizontalFull"  >Example:</label><br/>
+        <input class="HorizontalFull" id="Example" value="bonjour|0x75960Ef0B3325cCad2654FEf7eF096A9ED9A3FB8|0x7ea6de873306012e5d8a42c0dc007bd3739355be552ec9c946f7f0b267c6c7ed7bfe6af85c36bd6480da97997ce0394c8dd7fff646986259755db396c513e3261b" > <br/>
+        <textarea class="HorizontalFull"  id="pastTextToVerified" placeholder="Enter message signed to verify in format Message|Address|SignedMessage"></textarea><br/>
+        <button class="HorizontalFull"  id="splitRawMessage">Split</button><br/>
+        <input class="HorizontalFull"  type="text" id="messageToSign" placeholder="What message was signed ?"><br/>
+        <input class="HorizontalFull"  type="text" id="messageSignerAddress" placeholder="What the ethereum address of the signer ?"><br/>
+        <input class="HorizontalFull"  type="text" id="signedMessageAsText" placeholder="Text that suppose to prove he hold a his private key?"><br/>
+        <input class="HorizontalFull"  type="text" id="signerAddress" placeholder="Ethereum Address of the signer"><br/>
+        <button class="HorizontalFull"  id="splitRawMessage">Is Valide ?</button><br/>
+        <input class="HorizontalFull"  type="text" id="extractedAddress" readonly placeholder="Will be the address found in the message signed"><br/>
+        <input class="HorizontalFull"  type="checkbox" id="signerValidity" readonly/><br/>
 
-        <label > Example:</label><input id="Example" value="bonjour|0x75960Ef0B3325cCad2654FEf7eF096A9ED9A3FB8|0x7ea6de873306012e5d8a42c0dc007bd3739355be552ec9c946f7f0b267c6c7ed7bfe6af85c36bd6480da97997ce0394c8dd7fff646986259755db396c513e3261b" > <br/>
         
             
 
