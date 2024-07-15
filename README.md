@@ -26,6 +26,7 @@ On Ethereum:
 - https://etherscan.io/address/0xDa3239C8ad5C321A1411F3acC2C1f9F8C9D34ECE
 - Sign your identify with the hash of the donation 
 - Send me the text on Discord with 👋>🍻 to me on Discord.
+
 On KoFi:  
 - Make a donation with your Discord unique name as message
 - Come send me a 👋>☕ with the donation link containing the discord|address|signature
