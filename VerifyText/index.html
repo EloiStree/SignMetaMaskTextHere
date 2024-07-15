@@ -1,0 +1,154 @@
+<!-- https://eloistree.github.io/SignMetaMaskTextHere/index.html?q=guid_to_sign
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetaMask Connect and Sign Text Message</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+     <link rel="shortcut icon" href="https://cdn.iconscout.com/icon/free/png-256/free-metamask-7662310-6297246.png?f=webp&w=128" />
+
+    <style>
+     
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        #messageDisplay,
+        #addressDisplay,
+        #signatureDisplay,
+        #signatureDate {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }  
+         body {
+            background-color: rgb(174, 236, 174);
+        }
+
+
+    </style>
+
+</head>
+<body>
+<div style="text-align: center;">
+    <h1>Documentation</h1>
+    <p>Read me: <A href="https://github.com/EloiStree/SignMetaMaskTextHere">https://github.com/EloiStree/SignMetaMaskTextHere</A></p>
+    
+
+
+    <script>
+        // Function to extract public key from signed message
+        function extractPublicKey(signedMessage) {
+            // Initialize web3
+            if (typeof web3 !== 'undefined') {
+                web3 = new Web3(web3.currentProvider);
+            } else {
+                // Handle case when web3 is not available
+                console.error('Web3 is not available. Please make sure you have MetaMask installed.');
+                return;
+            }
+
+            // Get the signer's address from the signed message
+            const signerAddress = web3.eth.accounts.recover(signedMessage);
+
+            // Get the public key from the signer's address
+            const publicKey = web3.eth.accounts.publicKeyToAddress(signerAddress);
+
+            return publicKey;
+        }
+
+        // Example usage
+        const signedMessage = '0x...'; // Replace with the signed message
+        const publicKey = extractPublicKey(signedMessage);
+        console.log('Public Key:', publicKey);
+    </script>
+
+    <div>
+        <h2>Signed Message</h2>
+        <textarea id="pastTextToVerified" placeholder="Enter message signed to verify in format Message|Address|SignedMessage"></textarea>
+        <button id="splitRawMessage">Split</button>
+        <input type="text" id="messageToSign" placeholder="What message was signed ?">
+        <input type="text" id="messageSignerAddress" placeholder="What the ethereum address of the signer ?">
+        <input type="text" id="signedMessageAsText" placeholder="Text that suppose to prove he hold a his private key?" readonly>
+        <input type="text" id="signerAddress" placeholder="Ethereum Address of the signer">
+        <button id="splitRawMessage">Is Valide ?</button>
+        <input type="text" id="extractedAddress" placeholder="Will be the address found in the message signed">
+        <input type="checkbox" id="signerValidity" />
+        <label for="signerValidity">Signer is valid ?</label>
+        
+        <script>
+        document.getElementById("splitRawMessage").addEventListener("click", function() {    
+            var signedMessage = document.getElementById("signedMessageAsText").value;
+            var publicKey = extractPublicKey(signedMessage);
+            document.getElementById("extractedAddress").textContent = publicKey;
+           
+            var messageSignerAddress = document.getElementById("messageSignerAddress").value;
+            var extractedAddress = document.getElementById("extractedAddress").textContent;
+
+            var valid = messageSignerAddress === extractedAddress;
+            document.getElementById("signerValidity").checked = valid;
+
+
+            if (valid) {
+                console.log("Signer is valid");
+            } else {
+                console.log("Signer is not valid");
+            }
+        });
+        </script>
+
+
+
+
+    </div>
+
+    <div>
+        <h2>Signed Message</h2>
+        <textarea id="signedMessage" placeholder="Signed message will appear here" readonly></textarea>
+        <h2>Extracted Address</h2>
+        <p id="extractedAddress"></p>
+    </div>
+
+    
+</div>
+</body>
+</html>
