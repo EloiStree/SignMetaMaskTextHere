@@ -22,8 +22,7 @@ Welcome 😁, you want to speak with someone having an Ethereum wallet.
 If this code helped you, feel free to buy me a beer to pratice the tool 🍻😁.  
 
 On Ethereum:  
-- Send a transaction to this wallet: 0xDa3239C8ad5C321A1411F3acC2C1f9F8C9D34ECE
-- https://etherscan.io/address/0xDa3239C8ad5C321A1411F3acC2C1f9F8C9D34ECE
+- Send a transaction to this wallet: [0xDa3239C8ad5C321A1411F3acC2C1f9F8C9D34ECE](https://etherscan.io/address/0xDa3239C8ad5C321A1411F3acC2C1f9F8C9D34ECE)
 - Sign your identify with the hash of the donation 
 - Send me the text on Discord with 👋>🍻 to me on Discord.
 
