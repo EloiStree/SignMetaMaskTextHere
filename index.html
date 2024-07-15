@@ -144,7 +144,7 @@ footer {
     <P><input  class="HorizontalFull" id="copyPastable" name="Copy Pastable" ></input>
     <button class="HorizontalFull" id="copyText">Copy in clipboard for Text</button></P>
     <button class="HorizontalFull" id="copyLink">Copy in clipboard for URL</button>
-    
+    <a href="#" id="verificationRedirection">Go to the verify link it.</a>
     </div>
 
 
@@ -158,8 +158,10 @@ footer {
         
         document.getElementById('copyLink').addEventListener('click', function() {
             var copyText = document.getElementById("copyPastable");
-            copyToClipboard("https://eloistree.github.io/SignMetaMaskTextHere/VerifyText/index.html?q="+copyText.value);
-        });
+            var link = "https://eloistree.github.io/SignMetaMaskTextHere/index.html?q=" + copyText.value;
+            copyToClipboard(link);
+
+});
         const urlParams = new URLSearchParams(window.location.search);
         const messageUrl = urlParams.get('message');
         if (messageUrl) {
@@ -217,7 +219,8 @@ footer {
                                     var copyText = document.getElementById("copyPastable");
                                     copyText.select();
                                     copyText.setSelectionRange(0, 99999); // For mobile devices
-                                    copyToClipboard(string_copy_past);
+                                    copyToClipboard(string_copy_past);            
+                                    document.getElementById('verificationRedirection').href = link;
                                 })
                                 .catch(error => {
                                     console.error('Error signing message:', error);
