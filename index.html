@@ -10,76 +10,117 @@
      <link rel="shortcut icon" href="https://cdn.iconscout.com/icon/free/png-256/free-metamask-7662310-6297246.png?f=webp&w=128" />
 
     <style>
-     
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+     body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f6f8fa;
+    margin: 0;
+    padding: 0;
+    color: #24292e;
+}
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
 
-        h1 {
-            color: #333;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
+header {
+    background-color: #24292e;
+    color: white;
+    padding: 1em 0;
+}
 
-        p {
-            color: #666;
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
+header h1 {
+    margin: 0;
+    font-size: 1.5em;
+    display: inline-block;
+}
 
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    float: right;
+}
 
-        button {
-            padding: 10px 20px;
-            background-color: #333;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
+nav ul li {
+    display: inline;
+    margin-left: 1em;
+}
 
-        button:hover {
-            background-color: #555;
-        }
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
 
-        #messageDisplay,
-        #addressDisplay,
-        #signatureDisplay,
-        #signatureDate {
-            font-weight: bold;
-            margin-bottom: 10px;
-        }  
-         body {
-            background-color: rgb(174, 236, 174);
-        }
+nav ul li a:hover {
+    text-decoration: underline;
+}
 
-        .HorizontalFull {
-        width: 100%;
-        float: left;
-    }
+main {
+    background-color: white;
+    padding: 2em;
+    margin-top: 1em;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    border-bottom: 1px solid #e1e4e8;
+    padding-bottom: 0.3em;
+}
+
+.repo-list {
+    margin-top: 2em;
+}
+
+.repo {
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    padding: 1em;
+    margin-bottom: 1em;
+    background-color: #f6f8fa;
+}
+
+.repo h3 {
+    margin: 0;
+}
+
+.repo h3 a {
+    text-decoration: none;
+    color: #0366d6;
+}
+
+.repo h3 a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background-color: #24292e;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+    margin-top: 2em;
+}
+.horizontalFull {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
     </style>
 
 </head>
+
 <body>
-<div style="text-align: center;">
+<div style="text-align: left;">
     <h1>Prove MetaMask Ownership</h1>
     <h2>Documentation</h2>
-    <p>Source Code: https://github.com/EloiStree/SignMetaMaskTextHere/blob/main/index.html</p>
+    <p>Source Code:<a href="https://github.com/EloiStree/SignMetaMaskTextHere/blob/main/index.html">https://github.com/EloiStree/SignMetaMaskTextHere/blob/main/index.html</a> </p>
     <p>Credit: Coded by Éloi Strée with the hope to prove it utility in MetaMask directly 😁.</p>
     <p>Read me: <A href="https://github.com/EloiStree/SignMetaMaskTextHere">https://github.com/EloiStree/SignMetaMaskTextHere</A></p>
-    <p><I>Use me: <A href="https://eloistree.github.io/SignMetaMaskTextHere/index.html?q=guid_to_sign">https://eloistree.github.io/SignMetaMaskTextHere/index.html?q=guid_to_sign</A></I></p>
-    <P><I>(You know how to make a page look nice with only HTML and minimum good old pure javascrip. Ping me on Discord)</I></P>
+    <p><I>Use this page: <A href="https://eloistree.github.io/SignMetaMaskTextHere/index.html?q=guid_to_sign">https://eloistree.github.io/SignMetaMaskTextHere/index.html?q=guid_to_sign</A></I></p>
+    <P><I>(Ping me if you know how to make this page nice looking)</I></P>
 
     <img href="https://github.com/user-attachments/assets/b01e7d8d-520c-4f01-b7cb-a98fdfcd81d2"/>    
     <p>How to use in video: <a href="https://www.youtube.com/watch?v=dOrAhZtjjUY">video</a>  </p>
