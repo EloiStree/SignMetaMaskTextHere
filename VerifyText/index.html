@@ -75,66 +75,147 @@ https://eloistree.github.io/SignMetaMaskTextHereVerifyText/index.html?q=bonjour|
 <style>
     .HorizontalFull {
         width: 100%;
+        float: left;
     }
 </style>
 </head>
 <body>
 <div style="text-align: center; width: 80%;">
-    <h1>Documentation</h1>
+    <h1>Verify MetaMask Ownership</h1>
+    <h2>Documentation</h2>
+    <p>Source Code:https://github.com/EloiStree/SignMetaMaskTextHere/blob/main/VerifyText/index.html</p>
+    <p>Credit: Coded by Éloi Strée with the hope to prove it utility in MetaMask directly 😁.</p>
+    <p><I>Use me: <A href="https://eloistree.github.io/SignMetaMaskTextHereVerifyText/index.html?q=bonjour|0x75960Ef0B3325cCad2654FEf7eF096A9ED9A3FB8|0x7ea6de873306012e5d8a42c0dc007bd3739355be552ec9c946f7f0b267c6c7ed7bfe6af85c36bd6480da97997ce0394c8dd7fff646986259755db396c513e3261b">https://eloistree.github.io/SignMetaMaskTextHereVerifyText/index.html?q=messsage|address|signedmessage
+    </A></I></p>
+    <P><I>(You know how to make a page look nice with only HTML and minimum good old pure javascrip. Ping me on Discord)</I></P>
+    
     <p>Read me: <A href="https://github.com/EloiStree/SignMetaMaskTextHere">https://github.com/EloiStree/SignMetaMaskTextHere</A></p>
     
+        <h2>Want to verify someone hold a MetaMask account ?</h2>
+        
+        <P>Click on one button here to give you a random link to share.</P>
+        <P>Then ask the person to sign the message with his MetaMask account.</P>
+        <P>They are going to give you back a message looking like Message|Address|SignedText</P>
+        <p>Copy his return message in the next section.</p>
+        <br/><button onclick="copyToClipboardDocId('guidToSign')"class="HorizontalFull" id="guidToSign"></button>
+        <button onclick="copyToClipboardDocId('guidAsTime')"class="HorizontalFull" id="guidAsTime"></button>
+        <p id="linkCopyInClipBoard"></p>
 
+    <script>
 
+            function copyToClipboardDocId(id) {
+                if (!navigator.clipboard) {
+                    console.error('Clipboard API not available');
+                    return;
+                }
+                var text= "https://eloistree.github.io/SignMetaMaskTextHere/index.html?q="+document.getElementById(id).textContent;
+                navigator.clipboard.writeText(text).then(function() {
+                    console.log('Text successfully copied to clipboard');
+                }).catch(function(error) {
+                    console.error('Could not copy text to clipboard: ', error);
+                });
+                document.getElementById("linkCopyInClipBoard").textContent = "Link copied in clipboard: "+text;
+            }
+
+        function copyToClipboard(text) {
+                if (!navigator.clipboard) {
+                    console.error('Clipboard API not available');
+                    return;
+                }
+                
+                navigator.clipboard.writeText(text).then(function() {
+                    console.log('Text successfully copied to clipboard');
+                }).catch(function(error) {
+                    console.error('Could not copy text to clipboard: ', error);
+                });
+            }
+        function getTimeToMicroSecond() {
+            var d = new Date();
+            var n = d.getTime();
+           return n;
+        }
+        function generateGuid() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random() * 16 | 0,
+                    v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+        document.getElementById("guidToSign").textContent = generateGuid();
+        document.getElementById("guidAsTime").textContent = getTimeToMicroSecond();
+    </script>
     <div>
         
-        <h2>Signed Message</h2>
-        <label class="HorizontalFull"  >Example:</label><br/>
+
+        <h2>Copy his messsage here</h2>
         <input class="HorizontalFull" id="Example" value="bonjour|0x75960Ef0B3325cCad2654FEf7eF096A9ED9A3FB8|0x7ea6de873306012e5d8a42c0dc007bd3739355be552ec9c946f7f0b267c6c7ed7bfe6af85c36bd6480da97997ce0394c8dd7fff646986259755db396c513e3261b" > <br/>
         <textarea class="HorizontalFull"  id="pastTextToVerified" placeholder="Enter message signed to verify in format Message|Address|SignedMessage"></textarea><br/>
-        <button class="HorizontalFull"  id="splitRawMessageButton">Split</button><br/>
-        <input class="HorizontalFull"  type="text" id="messageToSign" placeholder="What message was signed ?"><br/>
+
+        <label class="HorizontalFull" >What message was signed? </label><br/>
+        <input class="HorizontalFull"  type="text" id="messageToSign" placeholder="What message was signed?"><br/>
+        <label class="HorizontalFull" >What message was signed? </label><br/>
         <input class="HorizontalFull"  type="text" id="messageSignerAddress" placeholder="What the ethereum address of the signer ?"><br/>
+        <label class="HorizontalFull" >What message was signed? </label><br/>
         <input class="HorizontalFull"  type="text" id="signedMessageAsText" placeholder="Text that suppose to prove he hold a his private key?"><br/>
-        <input class="HorizontalFull"  type="text" id="signerAddress" placeholder="Ethereum Address of the signer"><br/>
-        <button class="HorizontalFull"  id="isValideButton">Is Valide ?</button><br/>
+        <button class="HorizontalFull"  id="isValideButton">Verify</button><br/>
+        <label class="HorizontalFull" >Who really signed the given message? </label><br/>
         <input class="HorizontalFull"  type="text" id="extractedAddress" readonly placeholder="Will be the address found in the message signed"><br/>
-        <input class="HorizontalFull"  type="checkbox" id="signerValidityCheck" readonly/><br/>
-        <label class="HorizontalFull"  type="text" id="signerValidityLabel" readonly/><br/>
+        <label class="HorizontalFull" >Is he a the one claim to be at start? </label><br/>
+        <input class="HorizontalFull"  type="checkbox" id="signerValidityCheck" readonly/>
+        <label class="HorizontalFull"  type="text" id="signerValidityLabel" readonly/>No yet verified<br/>            
+
 
         
-            
 
-        
     <script>
         // Function to extract public key from signed message
         function extractPublicKey(messageToSigne, signedMessage) {
             const web3 = new Web3(window.ethereum);
             const signature = web3.eth.accounts.recover(messageToSigne, signedMessage);
-            const publicKey = web3.eth.accounts.publicKeyToAddress(signature);
-            return publicKey;
+            return signature;
 
         }
+        
+            function getQueryParam(param) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(param);
+            }
+        
+        document.getElementById("isValideButton").addEventListener("click", async () => {
+            await VerifyUser();
+        });
 
 
-        document.getElementById("splitRawMessageButton").addEventListener("click", function() {    
+        window.addEventListener('load',async () => {
+            await VerifyUser();
+        });
+
+        async function VerifyUser() {
+
+            const qParam = getQueryParam('q');
             var rawMessage = document.getElementById("pastTextToVerified").value;
-            var splitMessage = rawMessage.split("|");
-            if(splitMessage.length == 3) {
-               document.getElementById("messageToSign").value = splitMessage[0];
-               document.getElementById("messageSignerAddress").value = splitMessage[1];
-               document.getElementById("signedMessageAsText").value = splitMessage[2];
-
+            if (qParam) {
+                document.getElementById("pastTextToVerified").value = qParam;
+                rawMessage = qParam;
             }
 
-            var messageToSign = document.getElementById("messageToSign").value;
-            var signedMessage = document.getElementById("signedMessageAsText").value;
-            var publicKey = extractPublicKey(signedMessage);
-            document.getElementById("extractedAddress").textContent = publicKey;
-           
-            var messageSignerAddress = document.getElementById("messageSignerAddress").value;
-            var extractedAddress = document.getElementById("extractedAddress").textContent;
+            var splitMessage = rawMessage.split("|");
+            var v_messageToSign = document.getElementById("messageToSign").value;
+            var v_signedMessage = document.getElementById("signedMessageAsText").value;
+            var v_addressSigner = document.getElementById("messageSignerAddress").value;
+            if(splitMessage.length == 3) {
+                document.getElementById("messageToSign").value = splitMessage[0];
+                document.getElementById("messageSignerAddress").value = splitMessage[1];
+                document.getElementById("signedMessageAsText").value = splitMessage[2];
+                v_messageToSign = splitMessage[0];
+                v_addressSigner = splitMessage[1];
+                v_signedMessage = splitMessage[2];
+            }
+            
+            var v_extractedPublicAddress = extractPublicKey(v_messageToSign, v_signedMessage);
+            document.getElementById("extractedAddress").value = v_extractedPublicAddress;          
 
-            var valid = messageSignerAddress === extractedAddress;
+            var valid = v_extractedPublicAddress === v_addressSigner;
             document.getElementById("signerValidityCheck").checked = valid;
 
             if (valid) {
@@ -144,7 +225,7 @@ https://eloistree.github.io/SignMetaMaskTextHereVerifyText/index.html?q=bonjour|
                 document.getElementById("signerValidityCheck").style.backgroundColor = "red";
                 document.getElementById("signerValidityLabel").textContent = "Signer is not valid";
             }
-        });
+        };
         </script>
 
     </div>

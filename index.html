@@ -64,18 +64,25 @@
             background-color: rgb(174, 236, 174);
         }
 
-
+        .HorizontalFull {
+        width: 100%;
+        float: left;
+    }
     </style>
 
 </head>
 <body>
 <div style="text-align: center;">
-    <h1>Documentation</h1>
+    <h1>Prove MetaMask Ownership</h1>
+    <h2>Documentation</h2>
+    <p>Source Code: https://github.com/EloiStree/SignMetaMaskTextHere/blob/main/index.html</p>
+    <p>Credit: Coded by Éloi Strée with the hope to prove it utility in MetaMask directly 😁.</p>
     <p>Read me: <A href="https://github.com/EloiStree/SignMetaMaskTextHere">https://github.com/EloiStree/SignMetaMaskTextHere</A></p>
     <p><I>Use me: <A href="https://eloistree.github.io/SignMetaMaskTextHere/index.html?q=guid_to_sign">https://eloistree.github.io/SignMetaMaskTextHere/index.html?q=guid_to_sign</A></I></p>
+    <P><I>(You know how to make a page look nice with only HTML and minimum good old pure javascrip. Ping me on Discord)</I></P>
+
     <img href="https://github.com/user-attachments/assets/b01e7d8d-520c-4f01-b7cb-a98fdfcd81d2"/>    
     <p>How to use in video: <a href="https://www.youtube.com/watch?v=dOrAhZtjjUY">video</a>  </p>
-
     <h1>Connect to MetaMask and Sign a Message</h1>
 
 <div><textarea id="messageInput" name="Copy Pastable" rows="5" cols="400" placeholder="Enter message to sign"></textarea></div>
@@ -85,26 +92,31 @@
 
 
 <div>
-    <p id="messageDisplay">Message:</p>
-    <p id="addressDisplay">Address:</p>
-    <p id="signatureDisplay">Signed Message:</p>
-    <p id="signatureDate">Date: </p>
-    <p id="version">Code version: 0.0.16</p>
+    <p  class="HorizontalFull" id="messageDisplay">Message:</p>
+    <p  class="HorizontalFull" id="addressDisplay">Address:</p>
+    <p  class="HorizontalFull" id="signatureDisplay">Signed Message:</p>
+    <p  class="HorizontalFull" id="signatureDate">Date: </p>
+    <p  class="HorizontalFull" id="version">Code version: 0.0.16</p>
 </div>
 
 <div>
-    <P><input id="copyPastable" name="Copy Pastable"></input>
-    <button id="copyButton">Copy pastable</button></P>
-    <p><b>Copy pastable claim: GUID|META_MASK_ADDRESS|SIGNED_MESSSAGE</b></p>
-</div>
+    <P><input  class="HorizontalFull" id="copyPastable" name="Copy Pastable" ></input>
+    <button class="HorizontalFull" id="copyText">Copy in clipboard for application</button></P>
+    <button class="HorizontalFull" id="copyLink">Copy in clipboard for human</button>
+    </div>
 
 
     <script>
 
         // Example usage:
-        document.getElementById('copyButton').addEventListener('click', function() {
+        document.getElementById('copyText').addEventListener('click', function() {
             var copyText = document.getElementById("copyPastable");
             copyToClipboard(copyText.value);
+        });
+        
+        document.getElementById('copyLink').addEventListener('click', function() {
+            var copyText = document.getElementById("copyPastable");
+            copyToClipboard("https://eloistree.github.io/SignMetaMaskTextHere/VerifyText/index.html?q="+copyText.value);
         });
         const urlParams = new URLSearchParams(window.location.search);
         const messageUrl = urlParams.get('message');
