@@ -91,14 +91,15 @@ https://eloistree.github.io/SignMetaMaskTextHereVerifyText/index.html?q=bonjour|
         <label class="HorizontalFull"  >Example:</label><br/>
         <input class="HorizontalFull" id="Example" value="bonjour|0x75960Ef0B3325cCad2654FEf7eF096A9ED9A3FB8|0x7ea6de873306012e5d8a42c0dc007bd3739355be552ec9c946f7f0b267c6c7ed7bfe6af85c36bd6480da97997ce0394c8dd7fff646986259755db396c513e3261b" > <br/>
         <textarea class="HorizontalFull"  id="pastTextToVerified" placeholder="Enter message signed to verify in format Message|Address|SignedMessage"></textarea><br/>
-        <button class="HorizontalFull"  id="splitRawMessage">Split</button><br/>
+        <button class="HorizontalFull"  id="splitRawMessageButton">Split</button><br/>
         <input class="HorizontalFull"  type="text" id="messageToSign" placeholder="What message was signed ?"><br/>
         <input class="HorizontalFull"  type="text" id="messageSignerAddress" placeholder="What the ethereum address of the signer ?"><br/>
         <input class="HorizontalFull"  type="text" id="signedMessageAsText" placeholder="Text that suppose to prove he hold a his private key?"><br/>
         <input class="HorizontalFull"  type="text" id="signerAddress" placeholder="Ethereum Address of the signer"><br/>
-        <button class="HorizontalFull"  id="splitRawMessage">Is Valide ?</button><br/>
+        <button class="HorizontalFull"  id="isValideButton">Is Valide ?</button><br/>
         <input class="HorizontalFull"  type="text" id="extractedAddress" readonly placeholder="Will be the address found in the message signed"><br/>
-        <input class="HorizontalFull"  type="checkbox" id="signerValidity" readonly/><br/>
+        <input class="HorizontalFull"  type="checkbox" id="signerValidityCheck" readonly/><br/>
+        <label class="HorizontalFull"  type="text" id="signerValidityLabel" readonly/><br/>
 
         
             
@@ -106,26 +107,26 @@ https://eloistree.github.io/SignMetaMaskTextHereVerifyText/index.html?q=bonjour|
         
     <script>
         // Function to extract public key from signed message
-        function extractPublicKey(signedMessage) {
-            // Initialize web3
-            if (typeof web3 !== 'undefined') {
-                web3 = new Web3(web3.currentProvider);
-            } else {
-                // Handle case when web3 is not available
-                console.error('Web3 is not available. Please make sure you have MetaMask installed.');
-                return;
-            }
-            // Get the signer's address from the signed message
-            const signerAddress = web3.eth.accounts.recover(signedMessage);
-
-            // Get the public key from the signer's address
-            const publicKey = web3.eth.accounts.publicKeyToAddress(signerAddress);
-
+        function extractPublicKey(messageToSigne, signedMessage) {
+            const web3 = new Web3(window.ethereum);
+            const signature = web3.eth.accounts.recover(messageToSigne, signedMessage);
+            const publicKey = web3.eth.accounts.publicKeyToAddress(signature);
             return publicKey;
+
         }
 
 
-        document.getElementById("splitRawMessage").addEventListener("click", function() {    
+        document.getElementById("splitRawMessageButton").addEventListener("click", function() {    
+            var rawMessage = document.getElementById("pastTextToVerified").value;
+            var splitMessage = rawMessage.split("|");
+            if(splitMessage.length == 3) {
+               document.getElementById("messageToSign").value = splitMessage[0];
+               document.getElementById("messageSignerAddress").value = splitMessage[1];
+               document.getElementById("signedMessageAsText").value = splitMessage[2];
+
+            }
+
+            var messageToSign = document.getElementById("messageToSign").value;
             var signedMessage = document.getElementById("signedMessageAsText").value;
             var publicKey = extractPublicKey(signedMessage);
             document.getElementById("extractedAddress").textContent = publicKey;
@@ -134,13 +135,14 @@ https://eloistree.github.io/SignMetaMaskTextHereVerifyText/index.html?q=bonjour|
             var extractedAddress = document.getElementById("extractedAddress").textContent;
 
             var valid = messageSignerAddress === extractedAddress;
-            document.getElementById("signerValidity").checked = valid;
-
+            document.getElementById("signerValidityCheck").checked = valid;
 
             if (valid) {
-                console.log("Signer is valid");
+                document.getElementById("signerValidityCheck").style.backgroundColor = "green";
+                document.getElementById("signerValidityLabel").textContent = "Signer is valid";
             } else {
-                console.log("Signer is not valid");
+                document.getElementById("signerValidityCheck").style.backgroundColor = "red";
+                document.getElementById("signerValidityLabel").textContent = "Signer is not valid";
             }
         });
         </script>
