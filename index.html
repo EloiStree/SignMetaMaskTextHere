@@ -158,7 +158,7 @@ footer {
         
         document.getElementById('copyLink').addEventListener('click', function() {
             var copyText = document.getElementById("copyPastable");
-            var link = "https://eloistree.github.io/SignMetaMaskTextHere/index.html?q=" + copyText.value;
+            var link = " https://eloistree.github.io/SignMetaMaskTextHere/VerifyText/index.html?q=" + copyText.value;
             copyToClipboard(link);
 
 });
@@ -220,6 +220,7 @@ footer {
                                     copyText.select();
                                     copyText.setSelectionRange(0, 99999); // For mobile devices
                                     copyToClipboard(string_copy_past);            
+                                    var link = " https://eloistree.github.io/SignMetaMaskTextHere/VerifyText/index.html?q=" + string_copy_past;
                                     document.getElementById('verificationRedirection').href = link;
                                 })
                                 .catch(error => {
