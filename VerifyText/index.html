@@ -75,6 +75,24 @@
     
 
 
+    <div>
+        <h2>Signed Message</h2>
+        <textarea id="pastTextToVerified" placeholder="Enter message signed to verify in format Message|Address|SignedMessage"></textarea><br/>
+        <button id="splitRawMessage">Split</button><br/>
+        <input type="text" id="messageToSign" placeholder="What message was signed ?"><br/>
+        <input type="text" id="messageSignerAddress" placeholder="What the ethereum address of the signer ?"><br/>
+        <input type="text" id="signedMessageAsText" placeholder="Text that suppose to prove he hold a his private key?"><br/>
+        <input type="text" id="signerAddress" placeholder="Ethereum Address of the signer"><br/>
+        <button id="splitRawMessage">Is Valide ?</button><br/>
+        <input type="text" id="extractedAddress" readonly placeholder="Will be the address found in the message signed"><br/>
+        <input type="checkbox" id="signerValidity" readonly/><br/>
+        <label for="signerValidity">Signer is valid ?</label>
+
+        <label > Example:</label><input id="Example" value="bonjour|0x75960Ef0B3325cCad2654FEf7eF096A9ED9A3FB8|0x7ea6de873306012e5d8a42c0dc007bd3739355be552ec9c946f7f0b267c6c7ed7bfe6af85c36bd6480da97997ce0394c8dd7fff646986259755db396c513e3261b" > <br/>
+        
+            
+
+        
     <script>
         // Function to extract public key from signed message
         function extractPublicKey(signedMessage) {
@@ -86,7 +104,6 @@
                 console.error('Web3 is not available. Please make sure you have MetaMask installed.');
                 return;
             }
-
             // Get the signer's address from the signed message
             const signerAddress = web3.eth.accounts.recover(signedMessage);
 
@@ -96,26 +113,7 @@
             return publicKey;
         }
 
-        // Example usage
-        const signedMessage = '0x...'; // Replace with the signed message
-        const publicKey = extractPublicKey(signedMessage);
-        console.log('Public Key:', publicKey);
-    </script>
 
-    <div>
-        <h2>Signed Message</h2>
-        <textarea id="pastTextToVerified" placeholder="Enter message signed to verify in format Message|Address|SignedMessage"></textarea>
-        <button id="splitRawMessage">Split</button>
-        <input type="text" id="messageToSign" placeholder="What message was signed ?">
-        <input type="text" id="messageSignerAddress" placeholder="What the ethereum address of the signer ?">
-        <input type="text" id="signedMessageAsText" placeholder="Text that suppose to prove he hold a his private key?" readonly>
-        <input type="text" id="signerAddress" placeholder="Ethereum Address of the signer">
-        <button id="splitRawMessage">Is Valide ?</button>
-        <input type="text" id="extractedAddress" placeholder="Will be the address found in the message signed">
-        <input type="checkbox" id="signerValidity" />
-        <label for="signerValidity">Signer is valid ?</label>
-        
-        <script>
         document.getElementById("splitRawMessage").addEventListener("click", function() {    
             var signedMessage = document.getElementById("signedMessageAsText").value;
             var publicKey = extractPublicKey(signedMessage);
@@ -136,19 +134,8 @@
         });
         </script>
 
-
-
-
     </div>
 
-    <div>
-        <h2>Signed Message</h2>
-        <textarea id="signedMessage" placeholder="Signed message will appear here" readonly></textarea>
-        <h2>Extracted Address</h2>
-        <p id="extractedAddress"></p>
-    </div>
-
-    
 </div>
 </body>
 </html>
