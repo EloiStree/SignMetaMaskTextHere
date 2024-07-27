@@ -146,6 +146,10 @@ footer {
     <button class="HorizontalFull" id="copyLink">Copy in clipboard for URL</button>
     <a href="#" id="verificationRedirection">Go to the verify link it.</a>
     </div>
+    <div>
+        <img id="QRVERIFY" scr="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=HelloWorld" \>
+        
+    </div>
 
 
     <script>
@@ -158,7 +162,7 @@ footer {
         
         document.getElementById('copyLink').addEventListener('click', function() {
             var copyText = document.getElementById("copyPastable");
-            var link = " https://eloistree.github.io/SignMetaMaskTextHere/VerifyText/index.html?q=" + copyText.value;
+            var link = "https://eloistree.github.io/SignMetaMaskTextHere/VerifyText/index.html?q=" + copyText.value;
             copyToClipboard(link);
 
 });
@@ -222,6 +226,8 @@ footer {
                                     copyToClipboard(string_copy_past);            
                                     var link = " https://eloistree.github.io/SignMetaMaskTextHere/VerifyText/index.html?q=" + string_copy_past;
                                     document.getElementById('verificationRedirection').href = link;
+                                    var qr = "https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=" + link;
+                                    document.getElementById('QRVERIFY').src = qr;
                                 })
                                 .catch(error => {
                                     console.error('Error signing message:', error);
