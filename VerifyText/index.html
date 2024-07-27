@@ -270,11 +270,12 @@ footer {
                 document.getElementById("signerValidityCheck").style.backgroundColor = "red";
                 document.getElementById("signerValidityLabel").textContent = "Signer is not valid";
             }
+            document.getElementById("QRVERIFY").src = "https://api.qrserver.com/v1/create-qr-code/?size=256x256&data="+rawMessage;
             
         };
         </script>
-    </div>
-
+    </div> 
+    <img id="QRVERIFY" scr="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=HelloWorld" \>
     <h3>License: Beerware</h3>
     <p>
         <br>If this code helped you, feel free to buy me a beer to pratice the tool 🍻😁.
