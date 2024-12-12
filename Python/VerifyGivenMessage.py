@@ -1,3 +1,9 @@
+"""
+In this code we take a given message in ToSigneMessage|ClaimPublicKey|MessageSigned format that is easily clipboardable.
+And we check if the message is signed/valide using Python
+"""
+
+
 # pip install web3
 from web3 import Web3
 import os
