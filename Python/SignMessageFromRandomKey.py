@@ -1,3 +1,10 @@
+"""
+In this code we generate a random private key form Web3 that is compatible in MetaMask format.
+(Replace with yours if you want to try with your private key)
+From this key we sign a given messsage that we are able to copy past.
+"""
+
+
 # pip install web3
 from web3 import Web3
 import os
