@@ -32,7 +32,9 @@ On Ethereum:
 -----------------
 
 
-# Coaster / Privateer Concept
+# Sign message on device that can't have access to MetaMask.
+
+## Coaster / Privateer Concept
 
 MetaMask is not available on Quest3, Raspberry Pi, or your TV...
 
