@@ -58,7 +58,7 @@ Imagine you're at a bar, and you want a trusted friend to perform an important t
 
 Now, your friend can prove they are authorized to act on your behalf.
 
-**Example of maque's letter:**  
+**Example of marque's letter:**  
 `0x73e01Dcf82E50b41be3018F45200231933CAA744|0xFEEAcdE5d735B8b347D9BBF8fBd02FEd153b564A|0x1558f2c9477061382b87b11a7418a944bfa04351bde7099767460d5336949167682c99e4713c4beb1d150b8812b27f4a279ebe4dda7de2cf4405066767f615a91c`  
 
 
