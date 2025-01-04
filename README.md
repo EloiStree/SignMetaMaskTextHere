@@ -94,10 +94,16 @@ If the server supports the **Coaster authentification**, you can enhance it with
 1. **Whitelist**: Maintain a list of authorized public coaster addresses that are still valid.  
 2. **Logging Webhook**: Log actions taken with the coaster. Whenever the coaster is used, notify the master key (your original public address).
 
+--------------------------
 
-## Recall of why I am doing that
 
-- I need my Quest 3 to be able to authentify as a MetaMask account that the user won't leak accidenlty
-- I need a user to be able to play without knowing what is Ethereum and MetaMask but that the account is ready for when he want to learn
-- I need when a user want to play ranked game to be sure in name of what public address he is playing.
+## Recall of Why I Am Building These Tools  
+
+As a game developer, I am exploring these solutions to:  
+- Allow Quest 3 users to authenticate as a MetaMask account without accidentally leaking their private key.  
+- Enable users to play without knowing they own an Ethereum wallet, with the option to link it to MetaMask later for added security.  
+- Ensure users use MetaMask when playing ranked games to prevent theft caused by leaked private keys.  
+  - Coaster connections allow users to play and interact but do not permit them to recover prizes or perform administrative actions on the server(s).  
+- Create tools that do not require a database, making them accessible to young learners who want to build their own servers.  
+
 
