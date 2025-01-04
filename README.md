@@ -59,7 +59,7 @@ Imagine you're at a bar, and you want a trusted friend to perform an important t
 Now, your friend can prove they are authorized to act on your behalf.
 
 **Example of marque's letter:**  
-`0x73e01Dcf82E50b41be3018F45200231933CAA744|0xFEEAcdE5d735B8b347D9BBF8fBd02FEd153b564A|0x1558f2c9477061382b87b11a7418a944bfa04351bde7099767460d5336949167682c99e4713c4beb1d150b8812b27f4a279ebe4dda7de2cf4405066767f615a91c`  
+> 0x73e01Dcf82E50b41be3018F45200231933CAA744|0xFEEAcdE5d735B8b347D9BBF8fBd02FEd153b564A|0x1558f2c9477061382b87b11a7418a944bfa04351bde7099767460d5336949167682c99e4713c4beb1d150b8812b27f4a279ebe4dda7de2cf4405066767f615a91c  
 
 
 ### When Your Friend Takes Action:
@@ -71,11 +71,27 @@ Now, your friend can prove they are authorized to act on your behalf.
 This concept is similar to the **Privateer Letter** in pirate lore—a letter from a king or country that authorizes a pirate to act on their behalf.
 It is a public non revokable authorization. 
 
-Example of Signed Message with maque letter:
-```
-2025_01_04_03_20_17_13375|0x73e01Dcf82E50b41be3018F45200231933CAA744|0x989d5d47f220b369b254197d6ba724f92c2d949851b3aa586efb99c5d47b860e059c4adee27b79f2b8168003e55a304a3ed2f847e3eeb2bef47d5b9e00e5c4a91b|0xFEEAcdE5d735B8b347D9BBF8fBd02FEd153b564A|0x1558f2c9477061382b87b11a7418a944bfa04351bde7099767460d5336949167682c99e4713c4beb1d150b8812b27f4a279ebe4dda7de2cf4405066767f615a91c
-```
+**Example of signed message with marque letter:**
+> 2025_01_04_03_20_17_13375|0x73e01Dcf82E50b41be3018F45200231933CAA744|0x989d5d47f220b369b254197d6ba724f92c2d949851b3aa586efb99c5d47b860e059c4adee27b79f2b8168003e55a304a3ed2f847e3eeb2bef47d5b9e00e5c4a91b|0xFEEAcdE5d735B8b347D9BBF8fBd02FEd153b564A|0x1558f2c9477061382b87b11a7418a944bfa04351bde7099767460d5336949167682c99e4713c4beb1d150b8812b27f4a279ebe4dda7de2cf4405066767f615a91c
 
+- `0x1558f2c9477061382b87b11a7418a944bfa04351bde7099767460d5336949167682c99e4713c4beb1d150b8812b27f4a279ebe4dda7de2cf4405066767f615a91c`  
+  Prove that `0x73e01Dcf82E50b41be3018F45200231933CAA744` was the message signed by `0xFEEAcdE5d735B8b347D9BBF8fBd02FEd153b564A`.
+
+- `0x989d5d47f220b369b254197d6ba724f92c2d949851b3aa586efb99c5d47b860e059c4adee27b79f2b8168003e55a304a3ed2f847e3eeb2bef47d5b9e00e5c4a91b`  
+  Prove that `0x73e01Dcf82E50b41be3018F45200231933CAA744` signed `2025_01_04_03_20_17_13375`.
+
+- If `0xFEEAcdE5d735B8b347D9BBF8fBd02FEd153b564A` is allowed on the server without a whitelist:  
+  - `0x73e01Dcf82E50b41be3018F45200231933CAA744` will be logged as `0xFEEAcdE5d735B8b347D9BBF8fBd02FEd153b564A`.
+
+- If `0xFEEAcdE5d735B8b347D9BBF8fBd02FEd153b564A` is allowed on the server with a whitelist:  
+  - If `0x73e01Dcf82E50b41be3018F45200231933CAA744` is in the list:  
+    - `0x73e01Dcf82E50b41be3018F45200231933CAA744` will be logged as `0xFEEAcdE5d735B8b347D9BBF8fBd02FEd153b564A`.  
+  - Otherwise, `0x73e01Dcf82E50b41be3018F45200231933CAA744` is refused access.  
+    - Optionally: A log is created for `0xFEEAcdE5d735B8b347D9BBF8fBd02FEd153b564A` with `0x73e01Dcf82E50b41be3018F45200231933CAA744` indicating a failed attempt.
+
+
+**Whilelist line:**  
+`0xFEEAcdE5d735B8b347D9BBF8fBd02FEd153b564A>0x73e01Dcf82E50b41be3018F45200231933CAA744` 
 
 ### Server Support for Coasters
 
