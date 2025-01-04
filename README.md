@@ -26,14 +26,7 @@ On Ethereum:
 - Sign your identify with the hash of the donation 
 - Send me the text on [Discord](https://discord.gg/VDQqW2RYVF) with 👋>🍻 to me on Discord.
 
-On KoFi:  
-- Make a donation with your [Discord](https://discord.gg/VDQqW2RYVF) unique name as message
-- Come send me a 👋>☕ with the donation link containing the discord|address|signature
-- I will send your a text to sign
-- Send me the result
-- I can compare the two signatures
-- Congratulation. Thank for the coffee 👌
-- Enjoy your new skill
+
 
 
 -----------------
